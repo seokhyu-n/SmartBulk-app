@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 🌟 앱 전체 테마 -->
+    <style name="Theme.SmartBulk" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary colors -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Secondary colors -->
+        <item name="colorSecondary">@color/purple_700</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <!-- 배경 -->
+        <item name="android:windowBackground">@android:color/white</item>
+
+        <!-- ✅ 상태바/네비게이션바 색상 -->
+        <item name="android:statusBarColor">@android:color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@android:color/white</item>
+        <item name="android:windowLightNavigationBar">true</item>
+
+        <!-- Toolbar 스타일 -->
+        <item name="toolbarStyle">@style/SmartBulk.Toolbar</item>
+    </style>
+
+    <!-- 🌈 로그인/회원가입 화면 전용 테마 -->
+    <style name="Theme.SmartBulk.Login" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary colors -->
+        <item name="colorPrimary">@android:color/holo_blue_light</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+
+        <!-- Secondary colors -->
+        <item name="colorSecondary">@android:color/holo_blue_dark</item>
+        <item name="colorOnSecondary">@android:color/white</item>
+
+        <!-- 배경 -->
+        <item name="android:windowBackground">@android:color/white</item>
+
+        <!-- ✅ 상태바를 흰색으로, 아이콘은 검정색 -->
+        <item name="android:statusBarColor">@android:color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <!-- ✅ 하단 네비게이션바도 흰색 통일 -->
+        <item name="android:navigationBarColor">@android:color/white</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+
+    <!-- 🧭 공통 툴바 스타일 -->
+    <style name="SmartBulk.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="titleTextColor">@color/white</item>
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
+    <!-- 🟦 버튼 스타일 -->
+    <style name="SmartBulk.Button" parent="Widget.Material3.Button">
+        <item name="android:background">@drawable/rounded_button</item>
+        <item name="android:textColor">@color/on_deep_purple</item>
+    </style>
+
+</resources>

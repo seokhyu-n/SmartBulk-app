@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#AA1E88E5" /> <!-- 누를 때 -->
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#B31E88E5" /> <!-- 기본 반투명 파랑 -->
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+</selector>

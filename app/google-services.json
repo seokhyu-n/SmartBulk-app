@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "291483459449",
+    "project_id": "smartbulk-ad935",
+    "storage_bucket": "smartbulk-ad935.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:291483459449:android:667fbb2ba36f0c196419a8",
+        "android_client_info": {
+          "package_name": "com.example.smartbulk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJMd43PGjAutF8w4kFQO0hdoltnt3CMXI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

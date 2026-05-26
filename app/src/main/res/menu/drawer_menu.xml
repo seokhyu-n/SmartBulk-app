@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_home" android:title="홈" android:icon="@android:drawable/ic_menu_view" />
+    <item android:id="@+id/nav_my_page" android:title="마이페이지" android:icon="@android:drawable/ic_menu_myplaces" />
+    <item android:id="@+id/nav_stats" android:title="통계" android:icon="@android:drawable/ic_menu_info_details" />
+    <item android:id="@+id/nav_settings" android:title="설정" android:icon="@android:drawable/ic_menu_preferences" />
+    <item android:id="@+id/nav_logout" android:title="로그아웃" android:icon="@android:drawable/ic_lock_power_off" />
+</menu>
