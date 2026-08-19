@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- 버튼이 눌렸을 때 -->
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-            <solid android:color="#90CAF9" /> <!-- 눌렸을 때 약간 진한 하늘색 -->
-            <corners android:radius="12dp" />
+            <solid android:color="@color/accent_dark" />
+            <corners android:radius="14dp" />
         </shape>
     </item>
 
-    <!-- 버튼의 기본 상태 -->
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#AEDFF7" /> <!-- 기본 연한 하늘색 -->
-            <corners android:radius="12dp" />
+            <solid android:color="@color/accent" />
+            <corners android:radius="14dp" />
         </shape>
     </item>
 

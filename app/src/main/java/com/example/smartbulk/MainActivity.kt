@@ -4,14 +4,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.smartbulk.databinding.ItemWorkoutRoutineBinding
 import com.example.smartbulk.model.UserProfile
-import com.example.smartbulk.util.generateWorkoutRoutine
+import com.example.smartbulk.util.routineForToday
+import com.example.smartbulk.util.learnableExercises
 import com.example.smartbulk.util.WorkoutRoutine
+import com.example.smartbulk.util.DietRecommender
+import java.time.LocalDate
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.navigation.NavigationView
@@ -29,10 +34,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var heightTextView: TextView
     private lateinit var weightTextView: TextView
     private lateinit var goalTextView: TextView
+    private lateinit var textTodayRoutine: TextView
+    private lateinit var textTodayMeal: TextView
 
     private lateinit var btnStartWorkout: MaterialButton
+    private lateinit var learnExercisesContainer: LinearLayout
 
-    private var todayWorkoutRoutine: WorkoutRoutine? = null
+    private var todayRoutines: List<WorkoutRoutine>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,22 +56,20 @@ class MainActivity : AppCompatActivity() {
         heightTextView = findViewById(R.id.textHeight)
         weightTextView = findViewById(R.id.textWeight)
         goalTextView = findViewById(R.id.textGoal)
+        textTodayRoutine = findViewById(R.id.textTodayRoutine)
+        textTodayMeal = findViewById(R.id.textTodayMeal)
 
         btnStartWorkout = findViewById(R.id.btnStartWorkout)
+        learnExercisesContainer = findViewById(R.id.learnExercisesContainer)
+        populateLearnExercises()
 
         btnStartWorkout.setOnClickListener {
-            if (todayWorkoutRoutine == null) {
+            if (todayRoutines == null) {
                 Toast.makeText(this, "추천 운동을 불러오는 중입니다. 잠시만 기다려주세요.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val intent = Intent(this, WorkoutDetailActivity::class.java).apply {
-                putExtra("exerciseName", todayWorkoutRoutine!!.name)
-                putExtra("exerciseDescription", todayWorkoutRoutine!!.description)
-                putExtra("exerciseSets", todayWorkoutRoutine!!.sets)
-                putExtra("exerciseReps", todayWorkoutRoutine!!.reps)
-            }
-            startActivity(intent)
+            startActivity(Intent(this, WorkoutDetailActivity::class.java))
         }
 
         navigationView.setNavigationItemSelectedListener { item ->
@@ -98,7 +104,12 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
 
+    override fun onResume() {
+        super.onResume()
+        // onCreate가 아니라 onResume에서 불러야, 통계 화면에서 날짜별 계획을 바꾸고
+        // 뒤로가기로 이 화면에 돌아왔을 때(= onCreate는 다시 안 불림) 최신 값으로 갱신된다.
         loadUserProfileAndGenerateRoutine()
     }
 
@@ -133,20 +144,62 @@ class MainActivity : AppCompatActivity() {
                 weightTextView.text = "몸무게: ${weight}kg"
                 goalTextView.text = "운동 목표: $goal"
 
-                // 추천 루틴 생성
-                val userProfile = UserProfile(name, age, height, weight, goal)
-                val routines = generateWorkoutRoutine(userProfile)
-                todayWorkoutRoutine = routines.firstOrNull()
-
-                if (todayWorkoutRoutine == null) {
-                    Toast.makeText(this@MainActivity, "오늘의 추천 운동을 찾을 수 없습니다.", Toast.LENGTH_SHORT).show()
+                // 날짜별 운동 부위 설정(통계 화면에서 저장한 값)을 같이 읽어서
+                // '운동 시작하기'와 완전히 같은 기준으로 오늘의 루틴을 만든다.
+                val dailySplit = snapshot.child("dailySplit").children.associate {
+                    (it.key ?: "") to (it.getValue(String::class.java) ?: "휴식")
                 }
+
+                val userProfile = UserProfile(name, age, height, weight, goal)
+                val routines = routineForToday(userProfile, dailySplit)
+                todayRoutines = routines
+
+                textTodayRoutine.text = routines.joinToString("\n") { "• ${it.name} — ${it.sets} ${it.reps}" }
+
+                loadTodayDietRecommendation()
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(this@MainActivity, "사용자 정보를 불러오는 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    // AI(Claude)에게 오늘 운동 부위/프로필에 맞는 식단을 추천받는다.
+    // 실제 API 호출은 Cloud Functions 쪽에서 하고, 같은 날짜면 서버에 캐시된 결과를 재사용하므로
+    // 이 화면을 여러 번 열어도 비용이 반복해서 들지 않는다.
+    private fun loadTodayDietRecommendation() {
+        textTodayMeal.text = "불러오는 중..."
+        DietRecommender.fetchTodayRecommendation(
+            date = LocalDate.now(),
+            onSuccess = { recommendation ->
+                textTodayMeal.text = recommendation.toDisplayText()
+            },
+            onFailure = { exception ->
+                textTodayMeal.text = DietRecommender.friendlyErrorMessage(exception)
+            }
+        )
+    }
+
+    // 자세 분석을 지원하는 운동 전부를 카드로 쌓는다. ScrollView 안에 RecyclerView를 wrap_content로
+    // 중첩시키면 높이 계산이 불안정해서 일부만 보이는 문제가 있어, 항목 수가 적은(10개 안팎) 이 목록은
+    // RecyclerView 없이 뷰를 직접 추가하는 방식으로 확실하게 전부 보이게 했다.
+    private fun populateLearnExercises() {
+        learnExercisesContainer.removeAllViews()
+        learnableExercises().forEach { routine ->
+            val itemBinding = ItemWorkoutRoutineBinding.inflate(layoutInflater, learnExercisesContainer, false)
+            itemBinding.tvRoutineName.text = routine.name
+            itemBinding.tvRoutineDescription.text = routine.description
+            itemBinding.tvRoutineSets.text = "세트: ${routine.sets}"
+            itemBinding.tvRoutineReps.text = "횟수: ${routine.reps}"
+            itemBinding.root.setOnClickListener {
+                val intent = Intent(this, ExerciseDetailActivity::class.java)
+                intent.putExtra("routine", routine)
+                intent.putExtra(ExerciseDetailActivity.EXTRA_PRACTICE_MODE, true)
+                startActivity(intent)
+            }
+            learnExercisesContainer.addView(itemBinding.root)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

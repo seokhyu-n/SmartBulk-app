@@ -4,116 +4,151 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="@color/bg_base"
+    android:padding="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- 이름, 이메일, 운동 목표 -->
-        <TextView
-            android:id="@+id/tvName"
-            android:layout_width="wrap_content"
+        <!-- 프로필 카드 -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/SmartBulk.Card"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="이름: --"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:paddingBottom="4dp" />
+            android:layout_marginBottom="16dp">
 
-        <TextView
-            android:id="@+id/tvEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="이메일: --"
-            android:textSize="16sp"
-            android:paddingBottom="4dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp">
 
-        <TextView
-            android:id="@+id/tvGoal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="운동 목표: --"
-            android:textSize="16sp"
-            android:paddingBottom="12dp" />
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이름: --"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/accent"
+                    android:paddingBottom="6dp" />
 
-        <!-- 회원가입일, 활동 레벨 -->
-        <TextView
-            android:id="@+id/tvSignupDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="회원가입일: --"
-            android:textSize="14sp"
-            android:paddingBottom="4dp" />
+                <TextView
+                    android:id="@+id/tvEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이메일: --"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_secondary"
+                    android:paddingBottom="4dp" />
 
-        <TextView
-            android:id="@+id/tvActivityLevel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="활동 레벨: --"
-            android:textSize="14sp"
-            android:paddingBottom="12dp" />
+                <TextView
+                    android:id="@+id/tvGoal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="운동 목표: --"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_secondary" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-        <!-- 최근 운동 완료 날짜와 횟수 -->
-        <TextView
-            android:id="@+id/tvRecentWorkoutDate"
-            android:layout_width="wrap_content"
+        <!-- 활동 요약 카드 -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/SmartBulk.Card"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="최근 운동 완료 날짜: --"
-            android:textSize="14sp"
-            android:paddingBottom="4dp" />
+            android:layout_marginBottom="16dp">
 
-        <TextView
-            android:id="@+id/tvWorkoutCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="운동 횟수: --"
-            android:textSize="14sp"
-            android:paddingBottom="12dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="18dp">
 
-        <!-- 누적 운동 시간, 운동 루틴 개수 -->
-        <TextView
-            android:id="@+id/tvTotalWorkoutTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="누적 운동 시간: --"
-            android:textSize="14sp"
-            android:paddingBottom="4dp" />
+                <TextView
+                    android:id="@+id/tvSignupDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="회원가입일: --"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_secondary"
+                    android:paddingBottom="6dp" />
 
-        <TextView
-            android:id="@+id/tvRoutineCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="운동 루틴 개수: --"
-            android:textSize="14sp"
-            android:paddingBottom="12dp" />
+                <TextView
+                    android:id="@+id/tvActivityLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="활동 레벨: --"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_secondary"
+                    android:paddingBottom="6dp" />
+
+                <TextView
+                    android:id="@+id/tvRecentWorkoutDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="최근 운동 완료 날짜: --"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_secondary"
+                    android:paddingBottom="6dp" />
+
+                <TextView
+                    android:id="@+id/tvWorkoutCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="운동 횟수: --"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_secondary"
+                    android:paddingBottom="6dp" />
+
+                <TextView
+                    android:id="@+id/tvTotalWorkoutTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="누적 운동 시간: --"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_secondary"
+                    android:paddingBottom="6dp" />
+
+                <TextView
+                    android:id="@+id/tvRoutineCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="운동 루틴 개수: --"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_secondary" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- 나의 운동 스타일 태그 -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="운동 스타일:"
-            android:textSize="16sp"
+            android:text="운동 스타일"
+            android:textSize="15sp"
             android:textStyle="bold"
-            android:paddingBottom="6dp" />
+            android:textColor="@color/text_primary"
+            android:paddingBottom="8dp" />
 
         <com.google.android.flexbox.FlexboxLayout
             android:id="@+id/layoutTags"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="20dp"
+            android:paddingBottom="8dp"
             android:layout_marginBottom="20dp"
             app:flexWrap="wrap"
             app:justifyContent="flex_start" />
 
         <!-- 개인정보 설정 버튼 -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnEditProfile"
+            style="@style/SmartBulk.Button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="52dp"
             android:text="내 정보 변경"
-            android:padding="12dp"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="4dp" />
 
         <!-- 앱 문의 / 버그 신고, FAQ -->
         <TextView
@@ -121,17 +156,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="앱 문의 / 버그 신고하기"
-            android:textColor="#666666"
+            android:textColor="@color/text_secondary"
             android:textSize="14sp"
-            android:paddingTop="24dp"
-            android:paddingBottom="4dp" />
+            android:paddingTop="28dp"
+            android:paddingBottom="8dp" />
 
         <TextView
             android:id="@+id/tvFAQ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="자주 묻는 질문 (FAQ)"
-            android:textColor="#666666"
+            android:textColor="@color/text_secondary"
             android:textSize="14sp" />
 
     </LinearLayout>

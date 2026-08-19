@@ -100,6 +100,17 @@ private val muscleGroupMap = mapOf(
                             "손목과 팔을 고정한 상태로, 덤벨을 어깨 방향으로 들어 올립니다.\n" +
                             "완전히 팔을 펴기 직전까지만 내려주세요 (긴장 유지).",
                     gifResId = R.drawable.hammer_curl
+                ),
+                WorkoutRoutine(
+                    "풀업",
+                    "등 전체 근력과 악력 강화",
+                    "4세트",
+                    "최대한 많이",
+                    "봉을 어깨너비보다 약간 넓게 오버핸드 그립으로 잡습니다.\n" +
+                            "어깨를 아래로 내려 견갑골을 모은 상태에서 몸을 끌어올립니다.\n" +
+                            "턱이 봉 위로 올라올 때까지 당기고, 팔을 완전히 펼 때까지 천천히 내려옵니다.\n" +
+                            "반동(스윙) 없이 등 근육의 힘으로 당기는 데 집중하세요."
+                    // gif 리소스 아직 없음 — 추후 res/drawable에 gif 추가되면 gifResId만 채우면 됨
                 )
             )
         ),
@@ -170,12 +181,75 @@ private val muscleGroupMap = mapOf(
     // 필요시 다른 목표도 추가 가능
 )
 
-fun generateWorkoutRoutine(user: UserProfile): List<WorkoutRoutine> {
-    val routinesByGoal = muscleGroupMap[user.goal] ?: muscleGroupMap["유지"]!!
+/** 날짜별 운동 부위 설정(통계 화면)에서 고를 수 있는 선택지. "휴식"이면 유산소·스트레칭만 나온다. */
+val WEEKLY_SPLIT_CATEGORIES = listOf("가슴, 삼두", "등, 이두", "하체", "어깨", "휴식")
 
-    val todayIndex = LocalDate.now().toEpochDay().toInt() % routinesByGoal.size
-    val selectedGroup = routinesByGoal[todayIndex]
+private val cardioRoutine = WorkoutRoutine(
+    "유산소",
+    "심폐지구력과 체지방 감소에 도움",
+    "1세트",
+    "20분",
+    "빠르게 걷기, 조깅, 사이클 중 하나를 선택해 20분간 진행합니다.\n" +
+            "대화가 가능한 정도의 강도(중강도)를 유지하세요."
+)
 
-    val random = java.util.Random(user.name.hashCode().toLong())
-    return selectedGroup.routines.shuffled(random)
+private val stretchingBefore = WorkoutRoutine(
+    "스트레칭",
+    "부상 예방을 위한 준비 스트레칭",
+    "운동 전",
+    "몸 풀어주기 10분",
+    "본운동 전에 목, 어깨, 허리, 다리 순서로 각 부위를 15~20초씩 가볍게 늘려줍니다.\n" +
+            "차가운 근육을 다치지 않게, 반동 없이 천천히 진행하세요."
+)
+
+private val stretchingAfter = WorkoutRoutine(
+    "스트레칭",
+    "회복을 위한 마무리 스트레칭",
+    "운동 후",
+    "몸 풀어주기 10분",
+    "본운동 후에 사용한 근육 위주로 15~20초씩 늘려 회복을 돕습니다.\n" +
+            "호흡을 편안하게 유지하며, 통증이 없는 범위까지만 진행하세요."
+)
+
+/**
+ * 목표(goal)와 부위(category)에 맞는 운동 목록을 만든다.
+ * 순서는 [준비 스트레칭 → 부위 운동 → 유산소 → 마무리 스트레칭]으로 고정해서
+ * 항상 운동 전후로 스트레칭이 끼워지게 한다. "휴식"이거나 해당 부위 그룹을 찾을 수 없으면
+ * 부위 운동 없이 [준비 스트레칭 → 유산소 → 마무리 스트레칭]만 반환한다.
+ * 통계 화면에서 특정 날짜를 눌러 그날 계획을 미리 보여줄 때도 이 함수를 그대로 쓴다.
+ */
+fun routinesForCategory(goal: String, category: String): List<WorkoutRoutine> {
+    if (category == "휴식") return listOf(stretchingBefore, cardioRoutine, stretchingAfter)
+
+    val groupsForGoal = muscleGroupMap[goal] ?: muscleGroupMap.values.first()
+    val group = groupsForGoal.firstOrNull { it.groupName == category }
+        ?: return listOf(stretchingBefore, cardioRoutine, stretchingAfter)
+
+    return listOf(stretchingBefore) + group.routines + cardioRoutine + stretchingAfter
+}
+
+/**
+ * 사용자가 통계 화면에서 날짜별로 정해둔 부위(dailySplit, 키는 "2026-08-17" 같은 날짜 문자열)에
+ * 맞는 오늘의 운동 목록을 만든다.
+ * "오늘의 추천 루틴"(메인 화면 카드)과 "운동 시작하기"(WorkoutDetailActivity)가
+ * 항상 이 함수 하나만 써서 같은 운동을 보여주게 한다.
+ */
+fun routineForToday(
+    user: UserProfile,
+    dailySplit: Map<String, String>,
+    date: LocalDate = LocalDate.now()
+): List<WorkoutRoutine> {
+    val category = dailySplit[date.toString()] ?: "휴식"
+    return routinesForCategory(user.goal, category)
+}
+
+/**
+ * 카메라 자세 분석(SUPPORTED_EXERCISE_NAMES)을 지원하는 운동만 모아, "배우고 싶은 운동" 목록 등에 쓴다.
+ * 등록된 운동 원본은 muscleGroupMap에 있는 것을 그대로 재사용한다(설명/GIF 중복 방지).
+ */
+fun learnableExercises(): List<WorkoutRoutine> {
+    val all = muscleGroupMap.values.flatten().flatMap { it.routines }
+    return com.example.smartbulk.SUPPORTED_EXERCISE_NAMES.mapNotNull { name ->
+        all.firstOrNull { it.name == name }
+    }
 }

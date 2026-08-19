@@ -14,21 +14,23 @@
         android:layout_height="wrap_content"
         android:text="1"
         android:textSize="16sp"
-        android:textColor="@android:color/black"
+        android:textColor="@color/text_primary"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- 운동 완료 표시 (체크 아이콘) -->
+    <!-- 운동 완료 표시: 날짜 숫자를 완전히 덮는 큰 체크로, 완료 여부가 한눈에 보이게 함 -->
     <ImageView
         android:id="@+id/ivWorkoutDone"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:src="@drawable/ic_check_circle"
         android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -56,6 +56,9 @@ dependencies {
     // ✅ Firebase Realtime Database
     implementation("com.google.firebase:firebase-database-ktx")
 
+    // ✅ Firebase Cloud Functions (AI 식단 추천 — Anthropic API 키를 서버에서만 사용하기 위한 프록시)
+    implementation("com.google.firebase:firebase-functions-ktx")
+
     // ✅ 앱 기본 구성 요소 (XML 기반)
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

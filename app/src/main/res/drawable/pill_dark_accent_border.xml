@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 카메라 화면 위에 뜨는 반복 횟수 배지용. 다른 화면의 카드(SmartBulk.Card)처럼
+     bg_surface 배경 + accent 테두리를 써서 앱 다른 화면과 톤이 맞게 만들었다. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#D91B2117" />
+    <corners android:radius="18dp" />
+    <stroke android:width="1.5dp" android:color="@color/accent" />
+</shape>

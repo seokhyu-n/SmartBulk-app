@@ -1,12 +1,12 @@
 package com.example.smartbulk
 
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.android.flexbox.FlexboxLayout
 
 class MyPageActivity : AppCompatActivity() {
@@ -73,7 +73,7 @@ class MyPageActivity : AppCompatActivity() {
             val tagView = TextView(this).apply {
                 text = "#$tag"
                 setPadding(24, 12, 24, 12)
-                setTextColor(Color.WHITE)
+                setTextColor(ContextCompat.getColor(context, R.color.accent))
                 background = createRoundedBackground()
                 setMargins(8, 8, 8, 8)
             }
@@ -86,7 +86,7 @@ class MyPageActivity : AppCompatActivity() {
         return GradientDrawable().apply {
             shape = GradientDrawable.RECTANGLE
             cornerRadius = 24f
-            setColor(Color.parseColor("#2196F3")) // 파란 배경
+            setColor(ContextCompat.getColor(this@MyPageActivity, R.color.accent_muted))
         }
     }
 

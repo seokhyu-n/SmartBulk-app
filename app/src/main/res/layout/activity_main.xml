@@ -4,7 +4,7 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@color/bg_base">
 
     <!-- Main Content -->
     <LinearLayout
@@ -16,10 +16,9 @@
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+            android:background="@color/bg_base"
             android:title="SmartBulk"
-            android:titleTextColor="@android:color/white"
+            android:titleTextColor="@color/text_primary"
             app:menu="@menu/top_app_bar_menu" />
 
         <ScrollView
@@ -36,12 +35,8 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="8dp"
-                    app:strokeColor="?attr/colorPrimary"
-                    app:strokeWidth="1dp"
-                    android:layout_marginBottom="20dp"
-                    android:backgroundTint="@android:color/white">
+                    style="@style/SmartBulk.Card"
+                    android:layout_marginBottom="20dp">
 
                     <LinearLayout
                         android:orientation="vertical"
@@ -56,40 +51,43 @@
                             android:text="안녕하세요, 사용자님!"
                             android:textSize="22sp"
                             android:textStyle="bold"
-                            android:textColor="?attr/colorPrimary" />
+                            android:textColor="@color/accent" />
 
                         <TextView
                             android:id="@+id/textAge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="10dp"
                             android:text="나이: 25세"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/black" />
+                            android:textSize="15sp"
+                            android:textColor="@color/text_secondary" />
 
                         <TextView
                             android:id="@+id/textHeight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
                             android:text="키: 175cm"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/black" />
+                            android:textSize="15sp"
+                            android:textColor="@color/text_secondary" />
 
                         <TextView
                             android:id="@+id/textWeight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
                             android:text="몸무게: 70kg"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/black" />
+                            android:textSize="15sp"
+                            android:textColor="@color/text_secondary" />
 
                         <TextView
                             android:id="@+id/textGoal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
                             android:text="목표: 근육 증가"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/black" />
+                            android:textSize="15sp"
+                            android:textColor="@color/text_secondary" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -98,9 +96,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="오늘의 추천 루틴"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/text_primary"
                     android:layout_marginBottom="8dp" />
 
                 <!-- 추천 루틴 요약 (동적 텍스트) -->
@@ -108,8 +106,7 @@
                     android:id="@+id/cardTodayRoutine"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp"
+                    style="@style/SmartBulk.Card"
                     android:layout_marginBottom="20dp">
 
                     <LinearLayout
@@ -122,13 +119,9 @@
                             android:id="@+id/textTodayRoutine"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="🏋 🔥 오늘의 추천 루틴 🔥\n
-
-            상체 강화 트레이닝 — 30분 집중 근력 향상\n
-            하체 유산소 세션 — 20분 활력 충전\n
-            전신 스트레칭 — 10분 몸의 밸런스 맞추기"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/black" />
+                            android:text="불러오는 중..."
+                            android:textSize="15sp"
+                            android:textColor="@color/text_primary" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -137,17 +130,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="오늘의 식단 추천"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/text_primary"
                     android:layout_marginBottom="8dp" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardTodayMeal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp"
+                    style="@style/SmartBulk.Card"
                     android:layout_marginBottom="20dp">
 
                     <LinearLayout
@@ -160,31 +152,24 @@
                             android:id="@+id/textTodayMeal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="🍽 오늘의 식단 🍽\n
-           • 아침: 오트밀 + 바나나 + 삶은 달걀 2개\n
-           • 점심: 현미밥 + 닭가슴살 + 브로콜리\n
-           • 저녁: 단백질 쉐이크 + 구운 채소\n
-
-           균형 잡힌 식단으로 건강한 하루를 시작!"
-                            android:textSize="16sp"
-                            android:textColor="@android:color/black" />
+                            android:text="불러오는 중..."
+                            android:textSize="15sp"
+                            android:textColor="@color/text_primary" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
                 <!-- 운동 시작 버튼 -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnStartWorkout"
+                    style="@style/SmartBulk.Button"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="56dp"
                     android:text="운동 시작하기"
-                    android:textAllCaps="false"
                     android:textSize="16sp"
                     android:layout_marginTop="12dp"
                     android:icon="@drawable/ic_baseline_fitness_center_24"
-                    android:iconTint="@android:color/white"
-                    app:iconPadding="8dp"
-                    android:backgroundTint="?attr/colorPrimary"
-                    android:textColor="@android:color/white" />
+                    android:iconTint="@color/on_accent"
+                    app:iconPadding="8dp" />
 
                 <!-- 동기부여 문구 -->
                 <TextView
@@ -193,7 +178,7 @@
                     android:text="“꾸준함이 힘이다! 오늘도 화이팅!”"
                     android:textSize="14sp"
                     android:textStyle="italic"
-                    android:textColor="?attr/colorPrimary"
+                    android:textColor="@color/accent"
                     android:gravity="center"
                     android:layout_marginTop="24dp" />
 
@@ -204,9 +189,37 @@
                     android:layout_height="wrap_content"
                     android:text="지난 운동: 상체 운동 30분 (어제)"
                     android:textSize="14sp"
-                    android:textColor="@android:color/darker_gray"
+                    android:textColor="@color/text_secondary"
                     android:gravity="center"
                     android:layout_marginTop="12dp" />
+
+                <!-- 배우고 싶은 운동: 자세 분석을 지원하는 운동을 골라 연습해볼 수 있는 목록 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="배우고 싶은 운동"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="AI 자세 피드백으로 3회만 연습해보세요"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- ScrollView 안에서 RecyclerView를 wrap_content로 중첩시키면 높이 계산이
+                     불안정해서(항목이 다 안 보이는 문제) RecyclerView 대신 뷰를 직접 쌓는다.
+                     목록이 9~10개 수준으로 고정돼 있어 리사이클링 이점도 크지 않다. -->
+                <LinearLayout
+                    android:id="@+id/learnExercisesContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
@@ -217,5 +230,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="end"
+        android:background="@color/bg_elevated"
+        app:itemIconTint="@color/text_primary"
+        app:itemTextColor="@color/text_primary"
         app:menu="@menu/drawer_menu" />
 </androidx.drawerlayout.widget.DrawerLayout>
