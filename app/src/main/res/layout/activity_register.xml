@@ -1,178 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/register_root"
+<!-- 다른 폼 화면(SettingsActivity 등)과 같은 스타일(bg_base + rounded_edittext + SmartBulk.Button)로
+     맞춰서, 로그인 화면에서 넘어왔을 때 톤이 갑자기 튀지 않게 했다. -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorSurface"
-    tools:context=".RegisterActivity">
+    android:background="@color/bg_base"
+    android:padding="20dp">
 
-    <!-- 이메일 입력 -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/emailInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
-        app:boxStrokeColor="?attr/colorPrimary"
-        app:boxBackgroundMode="outline"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="40dp">
+        android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="회원가입"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SmartBulk를 시작하기 위한 정보를 입력해주세요"
+            android:textSize="13sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- 이메일 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이메일"
+            android:textSize="14sp"
+            android:textColor="@color/text_primary" />
+
+        <EditText
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:inputType="textEmailAddress"
+            android:hint="example@email.com"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
+            android:background="@drawable/rounded_edittext"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="16dp" />
 
-    <!-- 비밀번호 입력 -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        app:boxStrokeColor="?attr/colorPrimary"
-        app:boxBackgroundMode="outline"
-        app:layout_constraintTop_toBottomOf="@id/emailInputLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="16dp">
+        <!-- 비밀번호 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비밀번호"
+            android:textSize="14sp"
+            android:textColor="@color/text_primary" />
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:inputType="textPassword"
+            android:hint="6자 이상"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
+            android:background="@drawable/rounded_edittext"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="16dp" />
 
-    <!-- 이름 입력 -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/nameInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="이름"
-        app:boxStrokeColor="?attr/colorPrimary"
-        app:boxBackgroundMode="outline"
-        app:layout_constraintTop_toBottomOf="@id/passwordInputLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="16dp">
+        <!-- 이름 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이름"
+            android:textSize="14sp"
+            android:textColor="@color/text_primary" />
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/nameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:inputType="textPersonName"
+            android:hint="이름을 입력하세요"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
+            android:background="@drawable/rounded_edittext"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="16dp" />
 
-    <!-- 나이 입력 -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ageInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="나이"
-        app:boxStrokeColor="?attr/colorPrimary"
-        app:boxBackgroundMode="outline"
-        app:layout_constraintTop_toBottomOf="@id/nameInputLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="16dp">
+        <!-- 나이 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="나이"
+            android:textSize="14sp"
+            android:textColor="@color/text_primary" />
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/ageEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:inputType="number"
+            android:hint="예: 24"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
+            android:background="@drawable/rounded_edittext"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="16dp" />
 
-    <!-- 키 입력 -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/heightInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="키 (cm)"
-        app:boxStrokeColor="?attr/colorPrimary"
-        app:boxBackgroundMode="outline"
-        app:layout_constraintTop_toBottomOf="@id/ageInputLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="16dp">
+        <!-- 키 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="키 (cm)"
+            android:textSize="14sp"
+            android:textColor="@color/text_primary" />
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/heightEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:inputType="numberDecimal"
+            android:hint="예: 170"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
+            android:background="@drawable/rounded_edittext"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="16dp" />
 
-    <!-- 몸무게 입력 -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/weightInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="몸무게 (kg)"
-        app:boxStrokeColor="?attr/colorPrimary"
-        app:boxBackgroundMode="outline"
-        app:layout_constraintTop_toBottomOf="@id/heightInputLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="16dp">
+        <!-- 몸무게 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="몸무게 (kg)"
+            android:textSize="14sp"
+            android:textColor="@color/text_primary" />
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/weightEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:inputType="numberDecimal"
+            android:hint="예: 65"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
+            android:background="@drawable/rounded_edittext"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="16dp" />
 
-    <!-- 목표 선택 Spinner -->
-    <Spinner
-        android:id="@+id/spinnerGoal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/weightInputLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="16dp"/>
+        <!-- 운동 목표 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="운동 목표"
+            android:textSize="14sp"
+            android:textColor="@color/text_primary" />
 
-    <!-- 회원가입 버튼 -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/registerButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="회원가입 및 정보 저장"
-        style="@style/Widget.MaterialComponents.Button"
-        app:backgroundTint="?attr/colorPrimary"
-        android:textColor="?attr/colorOnPrimary"
-        app:layout_constraintTop_toBottomOf="@id/spinnerGoal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="24dp"/>
+        <Spinner
+            android:id="@+id/spinnerGoal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:layout_marginTop="6dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- 회원가입 버튼 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/registerButton"
+            style="@style/SmartBulk.Button"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="회원가입 및 정보 저장"
+            android:layout_marginTop="28dp" />
+
+    </LinearLayout>
+</ScrollView>

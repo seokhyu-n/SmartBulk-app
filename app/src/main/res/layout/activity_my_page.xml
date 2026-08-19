@@ -77,15 +77,6 @@
                     android:paddingBottom="6dp" />
 
                 <TextView
-                    android:id="@+id/tvActivityLevel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="활동 레벨: --"
-                    android:textSize="14sp"
-                    android:textColor="@color/text_secondary"
-                    android:paddingBottom="6dp" />
-
-                <TextView
                     android:id="@+id/tvRecentWorkoutDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -98,25 +89,7 @@
                     android:id="@+id/tvWorkoutCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="운동 횟수: --"
-                    android:textSize="14sp"
-                    android:textColor="@color/text_secondary"
-                    android:paddingBottom="6dp" />
-
-                <TextView
-                    android:id="@+id/tvTotalWorkoutTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="누적 운동 시간: --"
-                    android:textSize="14sp"
-                    android:textColor="@color/text_secondary"
-                    android:paddingBottom="6dp" />
-
-                <TextView
-                    android:id="@+id/tvRoutineCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="운동 루틴 개수: --"
+                    android:text="총 운동 완료 일수: --"
                     android:textSize="14sp"
                     android:textColor="@color/text_secondary" />
             </LinearLayout>

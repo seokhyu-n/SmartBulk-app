@@ -9,14 +9,13 @@
         android:layout_height="match_parent"
         android:background="@color/bg_base" />
 
-    <!-- 배경 이미지 (위에 붙이고 비율 유지) -->
+    <!-- 배경 이미지: 화면 전체를 채워서 아래쪽에 앱 기본 배경색(bg_base)이 그대로
+         드러나 경계가 뚝 끊겨 보이는 문제를 없앴다. 아래쪽은 login_scrim이 자연스럽게 어둡게 처리. -->
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
+        android:layout_height="match_parent"
         android:src="@drawable/smartbulk_login_bg"
-        android:scaleType="fitStart"
-        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
         android:contentDescription="배경 이미지" />
 
     <!-- 다크 스크림: 사진 위에서도 텍스트 대비를 확보하고 앱 전체 톤과 통일 -->

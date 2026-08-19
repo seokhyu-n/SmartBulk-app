@@ -84,12 +84,12 @@ functions/
 
 ## 실행 화면
 
-앱 스크린샷을 추가해주세요.
-
-ex)
-
-![login](screenshots/login.png)
-![main](screenshots/main.png)
+| | | |
+|---|---|---|
+| ![로그인](screenshots/login.png) 로그인 | ![회원가입](screenshots/signup.png) 회원가입 | ![메인 화면](screenshots/main.png) 메인 화면 |
+| ![배우고 싶은 운동](screenshots/learn_exercises.png) 배우고 싶은 운동 | ![오늘의 운동](screenshots/workout_checklist.png) 오늘의 운동 (완료 체크) | ![운동 상세](screenshots/exercise_detail.png) 운동 상세 |
+| ![자세 피드백](screenshots/pose_feedback.png) 자세 피드백 (실시간 관절 인식) | ![통계/달력](screenshots/statistics.png) 통계/달력 | ![날짜별 계획 미리보기](screenshots/statistics_preview.png) 날짜별 계획 미리보기 |
+| ![마이페이지](screenshots/mypage.png) 마이페이지 | | |
 
 ## 개발 기간
 
