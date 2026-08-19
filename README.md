@@ -84,12 +84,28 @@ functions/
 
 ## 실행 화면
 
-| | | |
-|---|---|---|
-| ![로그인](screenshots/login.png) 로그인 | ![회원가입](screenshots/signup.png) 회원가입 | ![메인 화면](screenshots/main.png) 메인 화면 |
-| ![배우고 싶은 운동](screenshots/learn_exercises.png) 배우고 싶은 운동 | ![오늘의 운동](screenshots/workout_checklist.png) 오늘의 운동 (완료 체크) | ![운동 상세](screenshots/exercise_detail.png) 운동 상세 |
-| ![자세 피드백](screenshots/pose_feedback.png) 자세 피드백 (실시간 관절 인식) | ![통계/달력](screenshots/statistics.png) 통계/달력 | ![날짜별 계획 미리보기](screenshots/statistics_preview.png) 날짜별 계획 미리보기 |
-| ![마이페이지](screenshots/mypage.png) 마이페이지 | | |
+<table>
+  <tr>
+    <td align="center"><img src="screenshots/login.png" width="220"><br>로그인 화면</td>
+    <td align="center"><img src="screenshots/signup.png" width="220"><br>회원가입 화면</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="screenshots/mypage.png" width="220"><br>마이페이지</td>
+    <td align="center"><img src="screenshots/main.png" width="220"><br>메인 화면</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="screenshots/learn_exercises.png" width="220"><br>배우고 싶은 운동 목록</td>
+    <td align="center"><img src="screenshots/statistics.png" width="220"><br>통계/달력 화면</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="screenshots/statistics_preview.png" width="220"><br>통계 - 날짜 미리보기 다이얼로그</td>
+    <td align="center"><img src="screenshots/workout_checklist.png" width="220"><br>오늘의 운동 - 체크박스</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="screenshots/exercise_detail.png" width="220"><br>운동 상세 화면 (스쿼트)</td>
+    <td align="center"><img src="screenshots/pose_feedback.png" width="220"><br>스쿼트 인식 자세 피드백</td>
+  </tr>
+</table>
 
 ## 개발 기간
 
